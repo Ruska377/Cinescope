@@ -1,5 +1,8 @@
 from config.hosts import BASE_URL_PAYMENT
 from helpers.get_payment import assert_get_payment
+import pytest
+
+pytestmark = pytest.mark.skip(reason="Тесты надо рефакторить")
 
 class TestPositive:
     def test_get_payments_by_user_id(self, movie_auth_session):

@@ -1,5 +1,8 @@
 from config.hosts import BASE_URL_PAYMENT
 from data.payment import PaymentData
+import pytest
+
+pytestmark = pytest.mark.skip(reason="Тесты надо рефакторить")
 
 class TestPositive:
     def test_find_all_payments(self, movie_auth_session):

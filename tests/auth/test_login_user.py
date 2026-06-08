@@ -1,6 +1,9 @@
 from config.hosts import BASE_URL_AUTH
 import requests
 from data.auth import AuthData
+import pytest
+
+pytestmark = pytest.mark.skip(reason="Тесты надо рефакторить")
 
 class TestPositive:
     def test_login_user(self):

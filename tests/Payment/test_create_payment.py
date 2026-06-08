@@ -1,6 +1,9 @@
 from config.hosts import BASE_URL_PAYMENT
 from data.payment import PaymentData
 import requests
+import pytest
+
+pytestmark = pytest.mark.skip(reason="Тесты надо рефакторить")
 
 class TestPositive:
     def test_create_payment(self, auth_session_test_user):

@@ -40,3 +40,7 @@ class MoviesData:
             "published": fake.boolean(),
             "genreId": fake.random_int(min=1, max=5)
         }
+
+    @staticmethod
+    def updated_data():
+        return {"name": "new name", "price": 999}

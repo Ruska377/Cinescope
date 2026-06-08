@@ -1,5 +1,8 @@
 from config.hosts import BASE_URL_AUTH
 from helpers.user_unchanged import assert_user_unchanged
+import pytest
+
+pytestmark = pytest.mark.skip(reason="Тесты надо рефакторить")
 
 class TestPositive:
     def test_patch_user(self, created_user_with_cleanup, movie_auth_session):

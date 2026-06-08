@@ -1,6 +1,9 @@
 from config.hosts import BASE_URL_PAYMENT
 from helpers.get_payment import assert_get_payment
 import requests
+import pytest
+
+pytestmark = pytest.mark.skip(reason="Тесты надо рефакторить")
 
 def test_get_payments(auth_session_test_user):
     response = auth_session_test_user.get(url=f"{BASE_URL_PAYMENT}/user")

@@ -2,6 +2,7 @@ from config.hosts import BASE_URL_AUTH
 from data.auth import AuthData
 import requests
 
+
 class TestPositive:
     def test_register_user(self, api_manager):
         user_data = AuthData.data_register_user()

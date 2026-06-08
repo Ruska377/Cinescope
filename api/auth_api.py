@@ -1,5 +1,5 @@
 from custom_requester.custom_requester import CustomRequester
-from config.hosts import ENDPOINT_USER, ENDPOINT_LOGIN
+from config.hosts import ENDPOINT_USER, ENDPOINT_LOGIN, ENDPOINT_REGISTER
 
 class AuthAPI(CustomRequester):
     def __init__(self, session):
@@ -7,8 +7,8 @@ class AuthAPI(CustomRequester):
 
     def authenticate(self, user_creds):
         login_data = {
-            "email": user_creds["email"],
-            "password": user_creds["password"]
+            "email": user_creds[0],
+            "password": user_creds[1]
         }
 
         response = self.login_user(login_data).json()
@@ -18,10 +18,6 @@ class AuthAPI(CustomRequester):
         token = response["accessToken"]
         self._update_session_headers(Authorization=f"Bearer {token}")
 
-    def clear_auth(self):
-        self.session.headers.pop("Authorization", None)
-        self.headers.pop("Authorization", None)
-
     def auth_with_invalid_token(self):
         self._update_session_headers(Authorization=f"Bearer invalid.token.123")
 
@@ -30,7 +26,7 @@ class AuthAPI(CustomRequester):
 
         return self.send_request(
             method="POST",
-            endpoint=ENDPOINT_USER,
+            endpoint=ENDPOINT_REGISTER,
             data=user_data,
             expected_status=expected_status
         )

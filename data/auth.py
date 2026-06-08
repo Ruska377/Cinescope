@@ -1,5 +1,6 @@
 from faker import Faker
-from config.credentials import ADMIN_PASSWORD, ADMIN_USERNAME
+from enums.roles import Roles
+from config.user_creds import SuperAdminCreds
 
 fake = Faker(locale='en_US')
 
@@ -7,8 +8,8 @@ class AuthData:
     @staticmethod
     def admin_data():
         return {
-            "email": ADMIN_USERNAME,
-            "password":ADMIN_PASSWORD
+            "email": SuperAdminCreds.USERNAME,
+            "password":SuperAdminCreds.PASSWORD
         }
 
     @staticmethod
@@ -55,11 +56,13 @@ class AuthData:
 
 class CreateData:
     @staticmethod
-    def data_create_user():
+    def creation_user_data():
         return {
             "fullName": fake.name(),
             "email": fake.unique.email(),
             "password": "Test1234",
+            "passwordRepeat": "Test1234",
+            "roles": [Roles.USER.value],
             "verified": True,
             "banned": False
         }
@@ -70,6 +73,18 @@ class CreateData:
             "fullName": fake.name(),
             "email": fake.unique.email(),
             "password": "",
+            "verified": True,
+            "banned": False
+        }
+
+    @staticmethod
+    def creation_admin_superadmin_user_data():
+        return {
+            "fullName": fake.name(),
+            "email": fake.unique.email(),
+            "password": "Test1234",
+            "passwordRepeat": "Test1234",
+            "roles": [Roles.ADMIN.value, Roles.SUPER_ADMIN.value],
             "verified": True,
             "banned": False
         }
