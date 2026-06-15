@@ -21,7 +21,7 @@ class TestPositive:
     @pytest.mark.positive
     @pytest.mark.slow
     @pytest.mark.parametrize("role,expected_status", [("super_admin", 200), ("common_user", 403)], indirect=["role"])
-    def test_delete_movie(self, created_movie_with_cleanup, role, expected_status):
+    def test_delete_movie_with_param(self, created_movie_with_cleanup, role, expected_status):
         movie_id = created_movie_with_cleanup["id"]
         delete_movie = role.api.movies_api.delete_movie(movie_id, expected_status=expected_status)
 
